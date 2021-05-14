@@ -16,15 +16,17 @@ firebase.database().goOnline();
 var database = firebase.database()
 
 function save(){
-    var time = new Date()
-    var Nowtime = time.toLocaleDateString()
     var userId = document.getElementById('userId').value
     var temperature = document.getElementById('temperature').value
-    Nowtime = Nowtime.replaceAll('/','');
-    database.ref(Nowtime +'/'+userId ).set({
-        Temperature : temperature
-    })
-
+    if(userId == "" || temperature == ""){
+        alert("請輸入座號及今日體溫!!!")
+    }
+    else{
+        database.ref(Nowtime +'/'+ userId).set({
+            Temperature : temperature
+        })
+        alert("回報完畢")
+    }
 }
 
 function get(){
