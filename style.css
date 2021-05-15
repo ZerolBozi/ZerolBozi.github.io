@@ -22,3 +22,8 @@ button {
     margin-top: 2rem;
     margin-left: 1.5rem;
 }
+
+div {
+    margin-top: 1.5rem;
+    display : none;
+}
