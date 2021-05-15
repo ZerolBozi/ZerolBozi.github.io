@@ -32,27 +32,32 @@ function save(){
         database.ref('DetailedRecords/' + Nowtime + '/' + userId ).once("value").then(function(snapshot){
         var val = snapshot.val();
         if(val == null){
-            if(temperature > 37.5){
-                database.ref('DetailedRecords/' + Nowtime + '/' + userId).set({
-                    Temperature : temperature ,
-                    Warning : 1 ,
-                    Date : Nowtime
-                    })
-                database.ref('Records/' + Nowtime + '/' + userId).set({
-                    Temperature : temperature ,
-                    })
+            if(userId >= 0 && userId <= 35 && temperature > 0 && temperature < 50){
+                if(temperature > 37.5){
+                    database.ref('DetailedRecords/' + Nowtime + '/' + userId).set({
+                        Temperature : temperature ,
+                        Warning : 1 ,
+                        Date : Nowtime
+                        })
+                    database.ref('Records/' + Nowtime + '/' + userId).set({
+                        Temperature : temperature ,
+                        })
+                }
+                else{
+                    database.ref('DetailedRecords/' + Nowtime + '/' + userId).set({
+                        Temperature : temperature ,
+                        Warning : 0 ,
+                        Date : Nowtime
+                        })
+                    database.ref('Records/' + Nowtime + '/' + userId).set({
+                        Temperature : temperature ,
+                        })
+                }
+                alert('體溫上傳成功')
             }
             else{
-                database.ref('DetailedRecords/' + Nowtime + '/' + userId).set({
-                    Temperature : temperature ,
-                    Warning : 0 ,
-                    Date : Nowtime
-                    })
-                database.ref('Records/' + Nowtime + '/' + userId).set({
-                    Temperature : temperature ,
-                    })
+                alert('座號或體溫輸入有誤')
             }
-            alert('體溫上傳成功')
         }
         else{
             alert('今日體溫已回報完畢，不需要重複上傳')
@@ -71,9 +76,10 @@ function display(){
 
 function get(){
     var userId = document.getElementById('userId').value
-    if(userId != ''){
-        var end = Nowtime - StartTime + 1
-        display()
+    if(userId >= 0 && userId <= 35){
+        if(document.getElementById('div1').style.display != "block"){
+            var end = Nowtime - StartTime + 1
+            display()
             for(i = 0; i < end ; i++){
                 var Refdate = (parseInt(StartTime,10)+i).toString()
                 database.ref('DetailedRecords/' + Refdate + '/' + userId).once("value").then(function(snapshot){
@@ -84,8 +90,9 @@ function get(){
                 })
             }
         }
+    }
     else{
-        alert('請先輸入座號，才可以查看紀錄')
+        alert('請先輸入正常的座號，才可以查看紀錄')
     }
 }
 
