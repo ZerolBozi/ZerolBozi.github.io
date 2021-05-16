@@ -11,8 +11,8 @@ var firebaseConfig = {
     measurementId: "G-B9J128R88S"
 };
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-firebase.database().goOnline();
+firebase.initializeApp(firebaseConfig)
+firebase.database().goOnline()
 var database = firebase.database()
 var time = new Date()
 var m = time.getMonth()+1
@@ -109,13 +109,13 @@ function get(){
 }
 
 function create(date,temperature){
-    var td1 = document.createElement('td');
-    td1.appendChild(document.createTextNode(date));
-    var td2 = document.createElement('td');
-    td2.appendChild(document.createTextNode(temperature));
-    var tr1 = document.createElement('tr');
-    tr1.appendChild(td1);
-    tr1.appendChild(td2);
+    var td1 = document.createElement('td')
+    td1.appendChild(document.createTextNode(date))
+    var td2 = document.createElement('td')
+    td2.appendChild(document.createTextNode(temperature))
+    var tr1 = document.createElement('tr')
+    tr1.appendChild(td1)
+    tr1.appendChild(td2)
     var table = document.getElementsByTagName('table')[0]
     table.appendChild(tr1)
 }
@@ -129,36 +129,36 @@ function clean(){
 
 function fnExcelReport()
 {
-    var tab_text="<table border='3px'><tr bgcolor='#FFFFFF'>";
+    var tab_text="<table border='3px'><tr bgcolor='#FFFFFF'>"
     var textRange; var j=0;
-    tab = document.getElementById('headerTable'); // id of table
+    tab = document.getElementById('headerTable') // id of table
 
     for(j = 0 ; j < tab.rows.length ; j++) 
     {     
-        tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
-        //tab_text=tab_text+"</tr>";
+        tab_text=tab_text+tab.rows[j].innerHTML+"</tr>"
+        //tab_text=tab_text+"</tr>"
     }
 
-    tab_text=tab_text+"</table>";
+    tab_text=tab_text+"</table>"
     tab_text= tab_text.replace("日期","Date")
     tab_text= tab_text.replace("體溫","Temperature")
-    tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
-    tab_text= tab_text.replace(/<img[^>]*>/gi,""); // remove if u want images in your table
-    tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+    tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "") //remove if u want links in your table
+    tab_text= tab_text.replace(/<img[^>]*>/gi,"") // remove if u want images in your table
+    tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, "") // reomves input params
 
-    var ua = window.navigator.userAgent;
-    var msie = ua.indexOf("MSIE "); 
+    var ua = window.navigator.userAgent
+    var msie = ua.indexOf("MSIE ")
 
     if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
     {
         txtArea1.document.open("txt/html","replace");
-        txtArea1.document.write(tab_text);
+        txtArea1.document.write(tab_text)
         txtArea1.document.close();
         txtArea1.focus(); 
-        sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls");
+        sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls")
     }  
     else                 //other browser not tested on IE 11
-        sa = window.open('data:application/vnd.ms-excel,' +　encodeURIComponent(tab_text));  
+        sa = window.open('data:application/vnd.ms-excel,' +　encodeURIComponent(tab_text))
 
-    return (sa);
+    return (sa)
 }
