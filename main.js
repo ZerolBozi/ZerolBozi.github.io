@@ -54,13 +54,17 @@ function save(){
                         })
                 }
                 alert('體溫上傳成功')
+                document.getElementById('temperature').value = ''
             }
             else{
                 alert('座號或體溫輸入有誤')
+                document.getElementById('userId').value = ''
+                document.getElementById('temperature').value = ''
             }
         }
         else{
             alert('今日體溫已回報完畢，不需要重複上傳')
+            document.getElementById('temperature').value = ''
         }
         })
     }
