@@ -32,7 +32,7 @@ function save(){
         database.ref('DetailedRecords/' + Nowtime + '/' + userId ).once("value").then(function(snapshot){
         var val = snapshot.val();
         if(val == null){
-            if(userId >= 0 && userId <= 35 && temperature > 0 && temperature < 50){
+            if(userId >= 0 && userId <= 35 && temperature > 30 && temperature < 50){
                 if(temperature > 37.5){
                     database.ref('DetailedRecords/' + Nowtime + '/' + userId).set({
                         Temperature : temperature ,
