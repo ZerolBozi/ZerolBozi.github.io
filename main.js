@@ -79,10 +79,10 @@ function display(){
 }
 
 function get(){
+    clean()
     var userId = document.getElementById('userId').value
     if(userId >= 0 && userId <= 35 && userId != ''){
         var end = Nowtime - StartTime + 1
-        clean()
         if(document.getElementById('div1').style.display != "block"){display()}
         for(i = 0; i < end ; i++){
             var Refdate = (parseInt(StartTime,10)+i).toString()
