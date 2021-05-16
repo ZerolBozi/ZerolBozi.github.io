@@ -23,6 +23,7 @@ var Nowtime = "" + time.getFullYear() + m + d
 var StartTime = '20210514'
 
 function save(){
+    if(document.getElementById('div1').style.display == "block"){display()}
     var userId = document.getElementById('userId').value
     var temperature = document.getElementById('temperature').value
     if(userId == "" || temperature == ""){
