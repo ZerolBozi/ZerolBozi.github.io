@@ -128,7 +128,7 @@ function create(date,temperature){
 
 function clean(){
     var table = document.getElementsByTagName('table')[0]
-    if(table.rows.length > 2){
+    if(table.rows.length >= 2){
         for(i = 0 ; i <= table.rows.length ; i++){
             table.deleteRow(1)
         }
