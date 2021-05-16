@@ -102,6 +102,8 @@ function get(){
     else{
         if(document.getElementById('div1').style.display == "block"){display()}
         alert('請先輸入正常的座號，才可以查看紀錄')
+        document.getElementById('userId').value = ''
+        document.getElementById('temperature').value = ''
     }
 }
 
