@@ -79,7 +79,21 @@ function get(){
     if(userId >= 0 && userId <= 35 && userId != ''){
         if(document.getElementById('div1').style.display != "block"){
             var end = Nowtime - StartTime + 1
+            clean()
             display()
+            for(i = 0; i < end ; i++){
+                var Refdate = (parseInt(StartTime,10)+i).toString()
+                database.ref('DetailedRecords/' + Refdate + '/' + userId).once("value").then(function(snapshot){
+                    var val = snapshot.val();
+                    if(val != null){
+                        create(val.Date,val.Temperature)
+                    }
+                })
+            }
+        }
+        else{
+            var end = Nowtime - StartTime + 1
+            clean()
             for(i = 0; i < end ; i++){
                 var Refdate = (parseInt(StartTime,10)+i).toString()
                 database.ref('DetailedRecords/' + Refdate + '/' + userId).once("value").then(function(snapshot){
@@ -106,6 +120,15 @@ function create(date,temperature){
     tr1.appendChild(td2);
     var table = document.getElementsByTagName('table')[0]
     table.appendChild(tr1)
+}
+
+function clean(){
+    var table = document.getElementsByTagName('table')[0]
+    if(table.rows.length > 2){
+        for(i = 0 ; i < table.rows.length ; i++){
+            table.deleteRow(1)
+        }
+    }
 }
 
 function fnExcelReport()
