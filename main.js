@@ -132,7 +132,7 @@ function fnExcelReport()
 
     tab_text=tab_text+"</table>";
     tab_text= tab_text.replace("日期","Date")
-    tab_text= tab_text.replace("溫度","Temperature")
+    tab_text= tab_text.replace("體溫","Temperature")
     tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
     tab_text= tab_text.replace(/<img[^>]*>/gi,""); // remove if u want images in your table
     tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
