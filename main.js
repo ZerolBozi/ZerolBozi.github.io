@@ -80,31 +80,18 @@ function display(){
 
 function get(){
     var userId = document.getElementById('userId').value
-    clean()
     if(userId >= 0 && userId <= 35 && userId != ''){
         var end = Nowtime - StartTime + 1
-        if(document.getElementById('div1').style.display != "block"){
-            display()
-            for(i = 0; i < end ; i++){
-                var Refdate = (parseInt(StartTime,10)+i).toString()
-                database.ref('DetailedRecords/' + Refdate + '/' + userId).once("value").then(function(snapshot){
-                    var val = snapshot.val();
-                    if(val != null){
-                        create(val.Date,val.Temperature)
-                    }
-                })
-            }
-        }
-        else{
-            for(i = 0; i < end ; i++){
-                var Refdate = (parseInt(StartTime,10)+i).toString()
-                database.ref('DetailedRecords/' + Refdate + '/' + userId).once("value").then(function(snapshot){
-                    var val = snapshot.val();
-                    if(val != null){
-                        create(val.Date,val.Temperature)
-                    }
-                })
-            }
+        clean()
+        if(document.getElementById('div1').style.display != "block"){display()}
+        for(i = 0; i < end ; i++){
+            var Refdate = (parseInt(StartTime,10)+i).toString()
+            database.ref('DetailedRecords/' + Refdate + '/' + userId).once("value").then(function(snapshot){
+                var val = snapshot.val();
+                if(val != null){
+                    create(val.Date,val.Temperature)
+                }
+            })
         }
     }
     else{
@@ -126,10 +113,8 @@ function create(date,temperature){
 
 function clean(){
     var table = document.getElementsByTagName('table')[0]
-    if(table.rows.length != 1){
-        for(i = 1 ; i <= table.rows.length ; i++){
-            table.deleteRow(1)
-        }
+    while(table.rows.length > 1){
+        table.deleteRow(1)
     }
 }
 
