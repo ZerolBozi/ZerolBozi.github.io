@@ -71,8 +71,13 @@ function save(){
 }
 
 function display(){
+    if(document.getElementById('div1').style.display == "block"){
+        document.getElementById('div1').style.display = "none"
+    }
+    else{
+        document.getElementById('div1').style.display = "block"
+    }
     //var userId = document.getElementById('userId').value
-    document.getElementById('div1').style.display = "block"
     //if(userId == 50){
     //    document.getElementById('outputBtn').style.display = "block"
     //}
@@ -95,6 +100,7 @@ function get(){
         }
     }
     else{
+        if(document.getElementById('div1').style.display == "block"){display()}
         alert('請先輸入正常的座號，才可以查看紀錄')
     }
 }
