@@ -82,8 +82,8 @@ function get(){
     var userId = document.getElementById('userId').value
     clean()
     if(userId >= 0 && userId <= 35 && userId != ''){
+        var end = Nowtime - StartTime + 1
         if(document.getElementById('div1').style.display != "block"){
-            var end = Nowtime - StartTime + 1
             display()
             for(i = 0; i < end ; i++){
                 var Refdate = (parseInt(StartTime,10)+i).toString()
@@ -96,7 +96,6 @@ function get(){
             }
         }
         else{
-            var end = Nowtime - StartTime + 1
             for(i = 0; i < end ; i++){
                 var Refdate = (parseInt(StartTime,10)+i).toString()
                 database.ref('DetailedRecords/' + Refdate + '/' + userId).once("value").then(function(snapshot){
@@ -127,8 +126,8 @@ function create(date,temperature){
 
 function clean(){
     var table = document.getElementsByTagName('table')[0]
-    if(table.rows.length >= 2){
-        for(i = 0 ; i <= table.rows.length ; i++){
+    if(table.rows.length != 1){
+        for(i = 1 ; i <= table.rows.length ; i++){
             table.deleteRow(1)
         }
     }
