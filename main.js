@@ -80,10 +80,10 @@ function display(){
 
 function get(){
     var userId = document.getElementById('userId').value
+    clean()
     if(userId >= 0 && userId <= 35 && userId != ''){
         if(document.getElementById('div1').style.display != "block"){
             var end = Nowtime - StartTime + 1
-            clean()
             display()
             for(i = 0; i < end ; i++){
                 var Refdate = (parseInt(StartTime,10)+i).toString()
@@ -97,7 +97,6 @@ function get(){
         }
         else{
             var end = Nowtime - StartTime + 1
-            clean()
             for(i = 0; i < end ; i++){
                 var Refdate = (parseInt(StartTime,10)+i).toString()
                 database.ref('DetailedRecords/' + Refdate + '/' + userId).once("value").then(function(snapshot){
